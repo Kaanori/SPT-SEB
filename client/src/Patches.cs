@@ -13,7 +13,7 @@ using SoundEngineBackport.LiveEngine;
 
 namespace SoundEngineBackport
 {
-    [BepInPlugin(Guid, "Sound Engine Backport", "1.0.0")]
+    [BepInPlugin(Guid, "Sound Engine Backport", "1.0.1")]
     public class Plugin : BaseUnityPlugin
     {
         internal const string Guid = "red.soundenginebackport.client";
@@ -55,7 +55,7 @@ namespace SoundEngineBackport
             {
                 Logger.LogError($"live acoustic data patch failed: {e}");
             }
-            Logger.LogInfo($"Sound Engine Backport v1.0.0 loaded (live engine port, extraMuffleStrength={Config.MuffleStrength.Value})");
+            Logger.LogInfo($"Sound Engine Backport v1.0.1 loaded (live engine port, extraMuffleStrength={Config.MuffleStrength.Value})");
         }
 
         private void Update()
