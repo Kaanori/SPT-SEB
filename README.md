@@ -111,7 +111,7 @@ Open the Configuration Manager with **F12**, section **Volume**. Changes apply i
 ## Installation
 
 1. Download the latest archive from [Releases](../../releases) or SP-Mod.
-2. Extract it at the root of your SPT folder.
+2. Extract it at the root of your SPT folder. It adds `BepInEx/plugins/` and `SPT_Runtime/user/mods/`.
 3. Start the server, then the game.
 
 Requires SPT 4.1.x. About 1.4 GB of audio.
