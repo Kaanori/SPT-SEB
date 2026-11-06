@@ -417,7 +417,8 @@ namespace SoundEngineBackport
                 var state = S(__instance);
                 if (state.LoopMode)
                 {
-                    return true; // original beat-aligned tail logic for old-format banks
+                    StopLoopV1(__instance);
+                    return false;
                 }
 
                 var t = Traverse.Create(__instance);
@@ -535,7 +536,7 @@ namespace SoundEngineBackport
 
             if (state.LoopMode)
             {
-                queue.Enqueue(clip, clip2, balance, startFire + delay, isAuto ? 0f : length / pitchMult, soundBank.BaseVolume * LiveMixer.GunshotGain, pitchMult);
+                queue.Enqueue(clip, clip2, balance, startFire + delay, isAuto ? 0f : ClipTime(length, pitchMult), soundBank.BaseVolume * LiveMixer.GunshotGain, pitchMult);
                 if (!isAuto)
                 {
                     __instance.ReleaseOcclusion(length / pitchMult / 6f);
@@ -549,7 +550,7 @@ namespace SoundEngineBackport
             }
 
             double bodyEnd = startFire + delay + length / pitchMult;
-            queue.Enqueue(clip, clip2, balance, startFire + delay, length / pitchMult, soundBank.BaseVolume * LiveMixer.GunshotGain, pitchMult);
+            queue.Enqueue(clip, clip2, balance, startFire + delay, ClipTime(length, pitchMult), soundBank.BaseVolume * LiveMixer.GunshotGain, pitchMult);
             state.LastBodyEnd = bodyEnd;
 
             if (!isAuto)
@@ -585,8 +586,68 @@ namespace SoundEngineBackport
             }
 
             double start = AudioSettings.dspTime + 0.02;
-            queue.Enqueue(clip, clip2, balance, start, length / pitchMult, soundBank.BaseVolume * LiveMixer.GunshotGain, pitchMult);
+            queue.Enqueue(clip, clip2, balance, start, ClipTime(length, pitchMult), soundBank.BaseVolume * LiveMixer.GunshotGain, pitchMult);
             state.LastBodyEnd = start + length / pitchMult;
+        }
+
+        /// <summary>Queue play time of a clip, stopped <see cref="GunshotEmitterBase.EndMargin"/>
+        /// before its end: the queue stops the source exactly at the end otherwise, where the
+        /// resampler reads the first sample again. Legacy banks (WTT-Armory...) mostly start at
+        /// full scale (0.5 to 0.75 on the close loops): a dry click at the end of every shot and
+        /// tail, like the one the live engine removes in ScheduleEndBeforeWrap.</summary>
+        private static float ClipTime(float length, float pitch)
+        {
+            return Mathf.Max(0.001f, length / Mathf.Max(0.01f, pitch) - (float)GunshotEmitterBase.EndMargin);
+        }
+
+        /// <summary>Clip seconds a loop salve is cut before its beat (the tail starts there).
+        /// SPT cuts at ClipLength / 16, but the shots of most custom loops do not sit on that
+        /// grid: the AK5C's next shot starts 3 ms before each beat, so 3 ms of its attack played
+        /// and were cut dead, a dry click after every single shot and salve. Measured over the
+        /// 425 loop clips of the WTT legacy banks: 2 to 5 ms for most, 12 ms at most (loops
+        /// drifting off the grid). Cutting earlier only shortens the decay the tail covers.</summary>
+        internal const float LoopCutLead = 0.015f;
+
+        /// <summary>Real time from the start of a loop to its cut, <paramref name="loopTime"/>
+        /// being the beat-aligned position in the clip.</summary>
+        private static float LoopCut(float loopTime, float pitch)
+        {
+            return Mathf.Max(0f, loopTime - LoopCutLead) / Mathf.Max(0.01f, pitch);
+        }
+
+        /// <summary>WeaponSoundPlayer.StopFiringLoop (beat-aligned tail of a loop salve), with
+        /// the loop cut before the next attack (see <see cref="LoopCutLead"/>) and the tail
+        /// stopped before its end (see <see cref="ClipTime"/>).</summary>
+        private static void StopLoopV1(WeaponSoundPlayer __instance)
+        {
+            var t = Traverse.Create(__instance);
+            double startFire = t.Field("_startFire").GetValue<double>();
+            float delay = t.Field("_delay").GetValue<float>();
+            float pitch = t.Field("_pitch").GetValue<float>();
+            float beatLn = __instance.BeatLn;
+            int beats = (int)((AudioSettings.dspTime - startFire) / beatLn) + 1;
+            float cut = LoopCut(beats * beatLn, pitch);
+            double tailStart = startFire + delay + cut;
+            t.Field("_startPlayingTime").SetValue(tailStart);
+
+            float tailLength = 0f;
+            SoundBank tail = __instance.IsSilenced ? __instance.TailSilenced : __instance.Tail;
+            if (tail != null)
+            {
+                AudioClip clip = null;
+                AudioClip clip2 = null;
+                float balance = t.Field("_balance").GetValue<float>();
+                tail.PickClipsByDistance(ref clip, ref clip2, ref balance, (int)Bridge(__instance).Environment, __instance.Distance);
+                t.Field("_balance").SetValue(balance);
+                tailLength = Mathf.Max(clip != null ? clip.length : 0f, clip2 != null ? clip2.length : 0f);
+                t.Field("_queue").GetValue<SuperBetterAudioQueue>()?.Enqueue(clip, clip2, balance, tailStart, ClipTime(tailLength, pitch), tail.BaseVolume, pitch);
+            }
+
+            float occlusionRelease = delay + cut;
+            t.Field("_isFiring").SetValue(false);
+            t.Field("_occlusionReleaseTime").SetValue(occlusionRelease);
+            t.Field("_releaseTime").SetValue(tailStart + tailLength / pitch);
+            __instance.ReleaseOcclusion(occlusionRelease);
         }
 
         private static void EndSalve(WeaponSoundPlayer __instance, Traverse t, V1State state)
@@ -630,10 +691,10 @@ namespace SoundEngineBackport
             float balance = 1f;
             tail.PickClipsByDistance(ref clip3, ref clip4, ref balance, (int)environment, __instance.Distance);
             float tailLength = Mathf.Max(clip3 != null ? clip3.length : 0f, clip4 != null ? clip4.length : 0f);
-            float beat = beatLn / pitchMult;
+            float beat = LoopCut(beatLn, pitchMult);
 
             double tailStart = startFire + delay + beat;
-            queue.Enqueue(clip3, clip4, balance, tailStart, tailLength / pitchMult, tail.BaseVolume * LiveMixer.GunshotGain, pitchMult);
+            queue.Enqueue(clip3, clip4, balance, tailStart, ClipTime(tailLength, pitchMult), tail.BaseVolume * LiveMixer.GunshotGain, pitchMult);
             t.Field("_isFiring").SetValue(false);
             t.Field("_startPlayingTime").SetValue(tailStart);
             t.Field("_releaseTime").SetValue(tailStart + tailLength / pitchMult);
