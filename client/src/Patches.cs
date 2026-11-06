@@ -286,11 +286,15 @@ namespace SoundEngineBackport
                 return false;
             }
             string name = clip.name;
-            // legacy SPT banks mark their loopable body clips with "_loop";
-            // the live banks' distant layer has "*_loop_tail" clips which are NOT
-            // old-format loop bodies (they caused the misclassification that made
-            // live banks fall back to the legacy beat-aligned tail scheduling).
-            return name.IndexOf("_loop", StringComparison.OrdinalIgnoreCase) >= 0
+            // legacy SPT banks mark their loopable body clips with "loop": "_loop" for
+            // most, but some custom banks drop the underscore (WTT-Armory AK5C family:
+            // "AK5COutdoorLoopClose"), which sent their 1.5 s salve clip to the live
+            // engine and played a whole burst for every bullet. No live clip contains
+            // "loop" outside "_loop_tail". Those "*_loop_tail" clips in the live banks'
+            // distant layer are NOT old-format loop bodies (they caused the
+            // misclassification that made live banks fall back to the legacy
+            // beat-aligned tail scheduling).
+            return name.IndexOf("loop", StringComparison.OrdinalIgnoreCase) >= 0
                 && name.IndexOf("tail", StringComparison.OrdinalIgnoreCase) < 0;
         }
 
