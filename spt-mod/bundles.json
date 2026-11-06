@@ -1,0 +1,677 @@
+{
+  "manifest": [
+    {
+      "key": "assets/content/audio/banks/ak101.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/ak102.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/ak74.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/ak74m.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/akm.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/aksu.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/aps.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/ash12.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/dvl.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/glock17.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/glock18.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/grenade.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/hk416.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/kedr.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/m1a.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/m4a1.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/m870.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/mosin.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/mp443.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/mp5.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/mp7.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/mpx.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/mr133.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/mr153.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/mr43.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/p226.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/pb.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/pm.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/rsass.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/sa58.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/saiga12.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/sks.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/sr1mp.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/sv-98.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/toz106.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/tt.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/vityaz.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/vpo209.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/vss.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/weaponsounds/weaponsounds.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/ak105.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/ak74.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/akm.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/aksu.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/aps.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/dvl.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/glock17.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/glock18.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/grach.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/grenade.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/items.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/kac pdw.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/kedr.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/m4a1.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/mp5.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/mpx.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/mr133.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/mr153.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/mr43.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/p226.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/pb.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/pm.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/rgd.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/saiga12.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/sks.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/sr1mp.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/sv98.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/test sounds.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/tt.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/vihr.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/vityaz.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/vss.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/akm/instrumental.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/akm/vpo209.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/aps/instrumental.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_alyonka_03_eat.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_bandage.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_crackers.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_drinkcan.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_filterbottle.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_flakes.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_foodcan.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_injector.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_mayo.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_medkit_ai.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_medkit_grizzly.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_medkit_salewa.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_mre.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_pillsblister.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_pillsbottle.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_slippers.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_splint.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_tetrapak.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_tetrapakwcap.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/weapons/usable_items/item_zvezda.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/audioshot.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/prefabs/shells/weaponsounds.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/blendoptions/assets.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/9a91.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/aa12.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/ak105new.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/ak12.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/ak308.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/ak50.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/ak545.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/axmc.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/cgnl_di.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/cgnl_gp.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/deagle_9x33r.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/g28.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/g36.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/howa_type20.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/m3s90.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/banks/mr153.bundle",
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/m60.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/mk18.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/banks/rsass.bundle",
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/mxlr.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/pd.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/pkm.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/qbz191.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/rd704.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/rpd.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/banks/mp5.bundle",
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/rshg2.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/rsp30.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/saiga12fa.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/sako.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/spear.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/sr25.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/sr2m.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/sr3m.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/tkpd.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/usp.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/uzi.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/uzip.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/val_mod4_silenced.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/velociraptor_silenced.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/gp25.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/banks/live_embedded/m203.bundle",
+      "dependencyKeys": [
+        "assets/content/audio/blendoptions/assets.bundle"
+      ]
+    },
+    {
+      "key": "assets/content/audio/data/soundcontainers/ambeintsounddata/cityseasonambientsounddata.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/data/soundcontainers/ambeintsounddata/customsseasonambientsounddata.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/data/soundcontainers/ambeintsounddata/lighthouseseasonambientsounddata.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/data/soundcontainers/ambeintsounddata/reserveseasonambientsounddata.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/data/soundcontainers/ambeintsounddata/sandboxseasonambientsounddata.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/data/soundcontainers/ambeintsounddata/shoppingmallseasonambientsounddata.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/data/soundcontainers/ambeintsounddata/shorelineseasonambientsounddata.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/data/soundcontainers/ambeintsounddata/woodsseasonambientsounddata.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/data/soundcontainers/artilleryshellingsounds.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/data/soundcontainers/precipitationsoundstorageso.bundle",
+      "dependencyKeys": []
+    },
+    {
+      "key": "assets/content/audio/data/soundcontainers/tripwiresoundstorage.bundle",
+      "dependencyKeys": []
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+spt-mod/bundles/**/*.bundle filter=lfs diff=lfs merge=lfs -text
+client/acoustics/**/*.audiobakedata filter=lfs diff=lfs merge=lfs -text

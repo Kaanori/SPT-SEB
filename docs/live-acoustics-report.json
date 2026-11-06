@@ -1,0 +1,695 @@
+{
+  "locations": {
+    "city_sound": {
+      "bake_portals_outside_sound_scene": 0,
+      "caps": [
+        4229,
+        23199
+      ],
+      "from_live_added": 1205,
+      "from_live_changed": 29299,
+      "from_live_identical": 23597,
+      "kept_from_spt": 55232,
+      "live_pairs": 111531,
+      "live_pairs_valid_in_live_scene": 111531,
+      "live_settings": [
+        6,
+        5,
+        4,
+        500,
+        300,
+        250
+      ],
+      "not_translated": {
+        "portal without SPT equivalent": 48510,
+        "room without SPT equivalent": 5392,
+        "route through other SPT rooms": 3528
+      },
+      "portals": {
+        "live": 3158,
+        "matched": 2931,
+        "no match": 227,
+        "same name (pos)": 12,
+        "same place (pos)": 2909,
+        "same rooms": 10,
+        "spt": 3462
+      },
+      "rooms": {
+        "live": 1085,
+        "matched": 1049,
+        "no match": 36,
+        "same place (center)": 3,
+        "same place (pos)": 1046,
+        "spt": 1062
+      },
+      "scene": "Assets/Content/Locations/City/City_Sound.unity",
+      "scene_check": {
+        "portals": 3462,
+        "rooms": 1062
+      },
+      "spt_caps": [
+        4229,
+        23199
+      ],
+      "spt_only_portals": 634,
+      "spt_pairs": 108128,
+      "spt_pairs_valid_in_spt_scene": 108128,
+      "spt_settings": [
+        6,
+        5,
+        4,
+        500,
+        300,
+        250
+      ],
+      "total": 109333,
+      "translated": 54101,
+      "translated_with_spt_only_routes": 18496,
+      "written": "AudioBakeData/city_sound.audiobakedata"
+    },
+    "custom_sound": {
+      "bake_portals_outside_sound_scene": 0,
+      "caps": [
+        2821,
+        11487
+      ],
+      "from_live_added": 11,
+      "from_live_changed": 12254,
+      "from_live_identical": 3040,
+      "kept_from_spt": 2386,
+      "live_pairs": 17453,
+      "live_pairs_valid_in_live_scene": 17453,
+      "live_settings": [
+        7,
+        6,
+        6,
+        500,
+        300,
+        250
+      ],
+      "not_translated": {
+        "portal without SPT equivalent": 1974,
+        "room without SPT equivalent": 95,
+        "route through other SPT rooms": 79
+      },
+      "portals": {
+        "live": 1027,
+        "matched": 1015,
+        "no match": 12,
+        "same place (pos)": 1015,
+        "same rooms": 0,
+        "spt": 1087
+      },
+      "rooms": {
+        "live": 337,
+        "matched": 336,
+        "no match": 1,
+        "same place (pos)": 336,
+        "spt": 338
+      },
+      "scene": "Assets/Content/Locations/Custom/Custom_Sound.unity",
+      "scene_check": {
+        "portals": 1087,
+        "rooms": 338
+      },
+      "spt_caps": [
+        2821,
+        11487
+      ],
+      "spt_only_portals": 77,
+      "spt_pairs": 17680,
+      "spt_pairs_valid_in_spt_scene": 17669,
+      "spt_settings": [
+        7,
+        6,
+        6,
+        500,
+        300,
+        250
+      ],
+      "total": 17691,
+      "translated": 15305,
+      "translated_with_spt_only_routes": 6723,
+      "written": "AudioBakeData/custom_sound.audiobakedata"
+    },
+    "factory_sound_rework": {
+      "bake_portals_outside_sound_scene": 0,
+      "from_live_added": 0,
+      "from_live_changed": 0,
+      "from_live_identical": 5480,
+      "kept_from_spt": 77,
+      "live_pairs": 5480,
+      "live_pairs_valid_in_live_scene": 5480,
+      "live_settings": [
+        6,
+        4,
+        4,
+        300,
+        300,
+        250
+      ],
+      "not_translated": {},
+      "portals": {
+        "live": 289,
+        "matched": 289,
+        "no match": 0,
+        "same place (pos)": 289,
+        "same rooms": 0,
+        "spt": 290
+      },
+      "rooms": {
+        "live": 115,
+        "matched": 115,
+        "no match": 0,
+        "same place (pos)": 115,
+        "spt": 116
+      },
+      "scene": "Assets/Content/Locations/Factory_Rework/Factory_Sound_Rework.unity",
+      "spt_only_portals": 1,
+      "spt_pairs": 5557,
+      "spt_pairs_valid_in_spt_scene": 5557,
+      "spt_settings": [
+        6,
+        4,
+        4,
+        300,
+        300,
+        250
+      ],
+      "total": 5557,
+      "translated": 5480,
+      "translated_with_spt_only_routes": 0
+    },
+    "laboratory_sound": {
+      "bake_portals_outside_sound_scene": 0,
+      "caps": [
+        3929,
+        15518
+      ],
+      "from_live_added": 13,
+      "from_live_changed": 1132,
+      "from_live_identical": 4964,
+      "kept_from_spt": 24,
+      "live_pairs": 6282,
+      "live_pairs_valid_in_live_scene": 6282,
+      "live_settings": [
+        6,
+        3,
+        3,
+        350,
+        300,
+        250
+      ],
+      "not_translated": {
+        "portal without SPT equivalent": 78,
+        "room without SPT equivalent": 95
+      },
+      "portals": {
+        "live": 471,
+        "matched": 468,
+        "no match": 3,
+        "same place (pos)": 468,
+        "same rooms": 0,
+        "spt": 468
+      },
+      "rooms": {
+        "live": 213,
+        "matched": 211,
+        "no match": 2,
+        "same place (pos)": 211,
+        "spt": 211
+      },
+      "scene": "Assets/Content/Locations/Laboratory/Laboratory_Sound.unity",
+      "scene_check": {
+        "portals": 468,
+        "rooms": 211
+      },
+      "spt_caps": [
+        3929,
+        15518
+      ],
+      "spt_only_portals": 0,
+      "spt_pairs": 6120,
+      "spt_pairs_valid_in_spt_scene": 6120,
+      "spt_settings": [
+        6,
+        3,
+        3,
+        350,
+        300,
+        250
+      ],
+      "total": 6133,
+      "translated": 6109,
+      "translated_with_spt_only_routes": 0,
+      "written": "AudioBakeData/laboratory_sound.audiobakedata"
+    },
+    "labyrinth_sound": {
+      "bake_portals_outside_sound_scene": 0,
+      "from_live_added": 0,
+      "from_live_changed": 0,
+      "from_live_identical": 1195,
+      "kept_from_spt": 10,
+      "live_pairs": 1195,
+      "live_pairs_valid_in_live_scene": 1195,
+      "live_settings": [
+        7,
+        3,
+        3,
+        350,
+        300,
+        500
+      ],
+      "not_translated": {},
+      "portals": {
+        "live": 97,
+        "matched": 97,
+        "no match": 0,
+        "same place (pos)": 97,
+        "same rooms": 0,
+        "spt": 98
+      },
+      "rooms": {
+        "live": 77,
+        "matched": 77,
+        "no match": 0,
+        "same place (pos)": 77,
+        "spt": 78
+      },
+      "scene": "Assets/Content/Locations/Labyrinth/Labyrinth_Sound.unity",
+      "spt_only_portals": 1,
+      "spt_pairs": 1205,
+      "spt_pairs_valid_in_spt_scene": 1205,
+      "spt_settings": [
+        7,
+        3,
+        3,
+        350,
+        300,
+        500
+      ],
+      "total": 1205,
+      "translated": 1195,
+      "translated_with_spt_only_routes": 0
+    },
+    "lighthouse_sound": {
+      "bake_portals_outside_sound_scene": 0,
+      "caps": [
+        1708,
+        8451
+      ],
+      "from_live_added": 278,
+      "from_live_changed": 8810,
+      "from_live_identical": 261,
+      "kept_from_spt": 3693,
+      "live_pairs": 17215,
+      "live_pairs_valid_in_live_scene": 17215,
+      "live_settings": [
+        7,
+        6,
+        6,
+        500,
+        300,
+        500
+      ],
+      "not_translated": {
+        "portal without SPT equivalent": 2837,
+        "room without SPT equivalent": 5029
+      },
+      "portals": {
+        "live": 981,
+        "matched": 817,
+        "no match": 164,
+        "same name (pos)": 1,
+        "same place (pos)": 812,
+        "same rooms": 4,
+        "spt": 846
+      },
+      "rooms": {
+        "live": 335,
+        "matched": 267,
+        "no match": 68,
+        "same place (center)": 14,
+        "same place (pos)": 253,
+        "spt": 268
+      },
+      "scene": "Assets/Content/Locations/Lighthouse/Lighthouse_Sound.unity",
+      "scene_check": {
+        "portals": 846,
+        "rooms": 268
+      },
+      "spt_caps": [
+        1848,
+        11378
+      ],
+      "spt_only_portals": 38,
+      "spt_pairs": 12764,
+      "spt_pairs_valid_in_spt_scene": 12764,
+      "spt_settings": [
+        7,
+        6,
+        6,
+        500,
+        300,
+        500
+      ],
+      "total": 13042,
+      "translated": 9349,
+      "translated_with_spt_only_routes": 815,
+      "written": "AudioBakeData/lighthouse_sound.audiobakedata"
+    },
+    "reserve_sound": {
+      "bake_portals_outside_sound_scene": 0,
+      "caps": [
+        2876,
+        12656
+      ],
+      "from_live_added": 355,
+      "from_live_changed": 30205,
+      "from_live_identical": 18869,
+      "kept_from_spt": 17514,
+      "live_pairs": 66164,
+      "live_pairs_valid_in_live_scene": 66164,
+      "live_settings": [
+        7,
+        6,
+        6,
+        500,
+        300,
+        250
+      ],
+      "not_translated": {
+        "portal without SPT equivalent": 14164,
+        "room without SPT equivalent": 2545,
+        "route through other SPT rooms": 26
+      },
+      "portals": {
+        "live": 1313,
+        "matched": 1207,
+        "no match": 106,
+        "same name (pos)": 18,
+        "same place (pos)": 1180,
+        "same rooms": 9,
+        "spt": 1262
+      },
+      "rooms": {
+        "live": 548,
+        "matched": 511,
+        "no match": 37,
+        "same place (pos)": 511,
+        "spt": 520
+      },
+      "scene": "Assets/Content/Locations/Reserve_Base/Reserve_Sound.unity",
+      "scene_check": {
+        "portals": 1262,
+        "rooms": 520
+      },
+      "spt_caps": [
+        2914,
+        12852
+      ],
+      "spt_only_portals": 94,
+      "spt_pairs": 66588,
+      "spt_pairs_valid_in_spt_scene": 66588,
+      "spt_settings": [
+        7,
+        6,
+        6,
+        500,
+        300,
+        250
+      ],
+      "total": 66943,
+      "translated": 49429,
+      "translated_with_spt_only_routes": 7012,
+      "written": "AudioBakeData/reserve_sound.audiobakedata"
+    },
+    "sandbox_sound": {
+      "bake_portals_outside_sound_scene": 0,
+      "caps": [
+        5994,
+        32983
+      ],
+      "from_live_added": 10,
+      "from_live_changed": 1747,
+      "from_live_identical": 1171,
+      "kept_from_spt": 3716,
+      "live_pairs": 6115,
+      "live_pairs_valid_in_live_scene": 6115,
+      "live_settings": [
+        6,
+        5,
+        5,
+        400,
+        300,
+        250
+      ],
+      "not_translated": {
+        "portal without SPT equivalent": 2953,
+        "room without SPT equivalent": 197,
+        "route through other SPT rooms": 37
+      },
+      "portals": {
+        "live": 573,
+        "matched": 534,
+        "no match": 39,
+        "same name (pos)": 4,
+        "same place (pos)": 526,
+        "same rooms": 4,
+        "spt": 676
+      },
+      "rooms": {
+        "live": 214,
+        "matched": 207,
+        "no match": 7,
+        "same place (pos)": 207,
+        "spt": 213
+      },
+      "scene": "Assets/Content/Locations/Sandbox/Sandbox_Sound.unity",
+      "scene_check": {
+        "portals": 676,
+        "rooms": 213
+      },
+      "spt_caps": [
+        5994,
+        32983
+      ],
+      "spt_only_portals": 143,
+      "spt_pairs": 6634,
+      "spt_pairs_valid_in_spt_scene": 6634,
+      "spt_settings": [
+        6,
+        5,
+        5,
+        400,
+        300,
+        250
+      ],
+      "total": 6644,
+      "translated": 2928,
+      "translated_with_spt_only_routes": 912,
+      "written": "AudioBakeData/sandbox_sound.audiobakedata"
+    },
+    "shopping_mall_sound": {
+      "bake_portals_outside_sound_scene": 0,
+      "caps": [
+        5665,
+        30095
+      ],
+      "from_live_added": 24,
+      "from_live_changed": 3429,
+      "from_live_identical": 2214,
+      "kept_from_spt": 5000,
+      "live_pairs": 14447,
+      "live_pairs_valid_in_live_scene": 14447,
+      "live_settings": [
+        6,
+        5,
+        5,
+        350,
+        300,
+        250
+      ],
+      "not_translated": {
+        "portal without SPT equivalent": 3600,
+        "room without SPT equivalent": 5180
+      },
+      "portals": {
+        "live": 1121,
+        "matched": 799,
+        "no match": 322,
+        "same name (pos)": 3,
+        "same place (pos)": 789,
+        "same rooms": 7,
+        "spt": 961
+      },
+      "rooms": {
+        "live": 346,
+        "matched": 232,
+        "no match": 114,
+        "same place (center)": 2,
+        "same place (pos)": 230,
+        "spt": 236
+      },
+      "scene": "Assets/Content/Locations/Shopping_Mall/Shopping_Mall_Sound.unity",
+      "scene_check": {
+        "portals": 961,
+        "rooms": 236
+      },
+      "spt_caps": [
+        5933,
+        32519
+      ],
+      "spt_only_portals": 276,
+      "spt_pairs": 10643,
+      "spt_pairs_valid_in_spt_scene": 10643,
+      "spt_settings": [
+        6,
+        5,
+        5,
+        350,
+        350,
+        250
+      ],
+      "total": 10667,
+      "translated": 5667,
+      "translated_with_spt_only_routes": 739,
+      "written": "AudioBakeData/shopping_mall_sound.audiobakedata"
+    },
+    "shoreline_sound": {
+      "bake_portals_outside_sound_scene": 0,
+      "caps": [
+        5874,
+        26492
+      ],
+      "from_live_added": 25,
+      "from_live_changed": 31494,
+      "from_live_identical": 20447,
+      "kept_from_spt": 97,
+      "live_pairs": 54288,
+      "live_pairs_valid_in_live_scene": 54288,
+      "live_settings": [
+        6,
+        5,
+        5,
+        450,
+        300,
+        250
+      ],
+      "not_translated": {
+        "above SPT buffer size": 3,
+        "portal without SPT equivalent": 72,
+        "room without SPT equivalent": 2247
+      },
+      "portals": {
+        "live": 1877,
+        "matched": 1813,
+        "no match": 64,
+        "same place (pos)": 1813,
+        "same rooms": 0,
+        "spt": 1822
+      },
+      "rooms": {
+        "live": 544,
+        "matched": 515,
+        "no match": 29,
+        "same place (pos)": 515,
+        "spt": 515
+      },
+      "scene": "Assets/Content/Locations/shorline/Shoreline_Sound.unity",
+      "scene_check": {
+        "portals": 1822,
+        "rooms": 515
+      },
+      "spt_caps": [
+        5874,
+        26492
+      ],
+      "spt_only_portals": 9,
+      "spt_pairs": 52038,
+      "spt_pairs_valid_in_spt_scene": 52038,
+      "spt_settings": [
+        6,
+        5,
+        5,
+        450,
+        300,
+        250
+      ],
+      "total": 52063,
+      "translated": 51966,
+      "translated_with_spt_only_routes": 864,
+      "written": "AudioBakeData/shoreline_sound.audiobakedata"
+    },
+    "woods_sound": {
+      "bake_portals_outside_sound_scene": 0,
+      "caps": [
+        588,
+        1944
+      ],
+      "from_live_added": 26,
+      "from_live_changed": 500,
+      "from_live_identical": 967,
+      "kept_from_spt": 232,
+      "live_pairs": 1816,
+      "live_pairs_valid_in_live_scene": 1816,
+      "live_settings": [
+        7,
+        7,
+        7,
+        500,
+        300,
+        500
+      ],
+      "not_translated": {
+        "portal without SPT equivalent": 200,
+        "room without SPT equivalent": 123
+      },
+      "portals": {
+        "live": 332,
+        "matched": 313,
+        "no match": 19,
+        "same place (pos)": 312,
+        "same rooms": 1,
+        "spt": 321
+      },
+      "rooms": {
+        "live": 119,
+        "matched": 116,
+        "no match": 3,
+        "same place (center)": 2,
+        "same place (pos)": 114,
+        "spt": 117
+      },
+      "scene": "Assets/Content/Locations/Woods/Woods_Sound.unity",
+      "scene_check": {
+        "portals": 321,
+        "rooms": 117
+      },
+      "spt_caps": [
+        588,
+        1944
+      ],
+      "spt_only_portals": 11,
+      "spt_pairs": 1699,
+      "spt_pairs_valid_in_spt_scene": 1699,
+      "spt_settings": [
+        7,
+        7,
+        7,
+        500,
+        300,
+        500
+      ],
+      "total": 1725,
+      "translated": 1493,
+      "translated_with_spt_only_routes": 3,
+      "written": "AudioBakeData/woods_sound.audiobakedata"
+    }
+  },
+  "metaxr": {
+    ".xrageo identical": 278,
+    ".xrageo other mesh (vertex/triangle counts differ)": 287,
+    ".xramap different": 11
+  }
+}
