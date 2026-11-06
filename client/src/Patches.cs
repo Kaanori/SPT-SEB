@@ -16,7 +16,9 @@ namespace SoundEngineBackport
     [BepInPlugin(Guid, "Sound Engine Backport", "1.0.1")]
     public class Plugin : BaseUnityPlugin
     {
-        internal const string Guid = "red.soundenginebackport.client";
+        // same GUID as the server mod and the Forge listing (checked by the Forge scanner)
+        internal const string Guid = "red.soundenginebackport";
+        private const string OldGuid = "red.soundenginebackport.client";
 
         internal static ManualLogSource Log;
         internal static string Location;
@@ -26,6 +28,7 @@ namespace SoundEngineBackport
         {
             Log = Logger;
             Location = Info.Location;
+            MigrateOldConfig();
             Config = new PluginConfig(((BaseUnityPlugin)this).Config);
             Config.BindAndApply();
             Harmony.CreateAndPatchAll(typeof(WeaponSoundPlayerPatches), Guid);
@@ -56,6 +59,28 @@ namespace SoundEngineBackport
                 Logger.LogError($"live acoustic data patch failed: {e}");
             }
             Logger.LogInfo($"Sound Engine Backport v1.0.1 loaded (live engine port, extraMuffleStrength={Config.MuffleStrength.Value})");
+        }
+
+        /// <summary>Up to 1.0.1 the client GUID, which names the config file, was
+        /// <see cref="OldGuid"/>: its settings move to the new file once.</summary>
+        private void MigrateOldConfig()
+        {
+            try
+            {
+                var config = ((BaseUnityPlugin)this).Config;
+                string oldPath = System.IO.Path.Combine(BepInEx.Paths.ConfigPath, OldGuid + ".cfg");
+                if (System.IO.File.Exists(config.ConfigFilePath) || !System.IO.File.Exists(oldPath))
+                {
+                    return;
+                }
+                System.IO.File.Move(oldPath, config.ConfigFilePath);
+                config.Reload();
+                Logger.LogInfo($"settings moved from {OldGuid}.cfg to {Guid}.cfg");
+            }
+            catch (System.Exception e)
+            {
+                Logger.LogError($"could not move the settings of {OldGuid}.cfg: {e}");
+            }
         }
 
         private void Update()

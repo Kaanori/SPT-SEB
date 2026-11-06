@@ -3,6 +3,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <AssemblyName>SoundEngineBackport</AssemblyName>
+    <Version>1.0.1</Version>
     <RootNamespace>SoundEngineBackport</RootNamespace>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
