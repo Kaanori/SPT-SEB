@@ -295,6 +295,8 @@ namespace SoundEngineBackport
         {
             public bool LoopMode;
             public double LastBodyEnd;
+            // loop clip of the current salve, read for its gaps (LegacyLoopCuts)
+            public AudioClip LoopClip;
         }
 
         private static V1State S(WeaponSoundPlayer player) => V1States.GetOrCreateValue(player);
@@ -484,7 +486,12 @@ namespace SoundEngineBackport
 
             SuperBetterAudioQueue queue = t.Field("_queue").GetValue<SuperBetterAudioQueue>();
             bool isFiring = t.Field("_isFiring").GetValue<bool>();
-            bool triggerReleased = !bridge.isWeaponTriggerPressed || malfunctioned || burstOf2Start;
+            // the game ends a loop salve only when the trigger is released (BreakLoop), also in
+            // semi: a 100 ms click played two beats of the loop for one bullet. Outside fullauto
+            // and burst the salve is one bullet, ended at once like a released trigger (the live
+            // engine sends these modes to its single-shot emitter the same way).
+            bool triggerReleased = !bridge.isWeaponTriggerPressed || malfunctioned || burstOf2Start
+                || !IsContinuousMode(bridge);
 
             if (isFiring && queue != null)
             {
@@ -542,6 +549,7 @@ namespace SoundEngineBackport
             t.Field("_prevPitchMult").SetValue(pitchMult);
 
             state.LoopMode = IsLoopClip(clip) || IsLoopClip(clip2);
+            state.LoopClip = IsLoopClip(clip) ? clip : clip2;
             float length = Mathf.Max(clip != null ? clip.length : 0f, clip2 != null ? clip2.length : 0f);
             float delay = distance / SoundSpeed;
             double startFire = AudioSettings.dspTime;
@@ -568,7 +576,8 @@ namespace SoundEngineBackport
                 }
                 if (isAuto && triggerReleased)
                 {
-                    ScheduleLoopTail(__instance, t, isSilenced, environment, pitchMult, startFire, delay);
+                    ScheduleLoopTail(__instance, t, state, isSilenced, environment, pitchMult, startFire, delay,
+                        burstOf2Start ? 2 : 1);
                 }
                 __instance.FireSonicSound(delay, soundBank.Rolloff, ammo, shotPosition, shotDirection);
                 return;
@@ -588,6 +597,16 @@ namespace SoundEngineBackport
             }
 
             __instance.FireSonicSound(delay, soundBank.Rolloff, ammo, shotPosition, shotDirection);
+        }
+
+        /// <summary>True when one trigger pull fires several bullets (fullauto, burst), as in
+        /// LiveWeaponSoundEngine. Unknown weapons keep SPT's trigger-driven behaviour.</summary>
+        private static bool IsContinuousMode(BaseSoundPlayer.IObserverToPlayerBridge bridge)
+        {
+            Weapon weapon = bridge.Weapon as Weapon;
+            return weapon == null
+                || weapon.SelectedFireMode == Weapon.EFireMode.fullauto
+                || weapon.SelectedFireMode == Weapon.EFireMode.burst;
         }
 
         private static void EnqueueOneShot(
@@ -633,25 +652,74 @@ namespace SoundEngineBackport
         /// drifting off the grid). Cutting earlier only shortens the decay the tail covers.</summary>
         internal const float LoopCutLead = 0.015f;
 
-        /// <summary>Real time from the start of a loop to its cut, <paramref name="loopTime"/>
-        /// being the beat-aligned position in the clip.</summary>
-        private static float LoopCut(float loopTime, float pitch)
+        /// <summary>Window of the gap that ends the shot of a beat, in beats around that beat's
+        /// grid line. Before: the silenced KAC PDW's gaps sit 0.58 beat before the line (its
+        /// shots start 18 ms early, then ring 30 ms); this also keeps a first shot 0.35 beat
+        /// long at least. After: the unsilenced PDW's gaps fall up to 0.08 beat after the line,
+        /// and later gaps belong to the next shot (a window of one beat from the release cut an
+        /// AEK 3-round salve at 260 ms instead of 183: a 4th shot heard).</summary>
+        private const float CutWindowBefore = 0.65f;
+        private const float CutWindowAfter = 0.2f;
+
+        /// <summary>Clip time of the cut ending the shot of the beat at <paramref name="beatTime"/>:
+        /// the quietest gap of its window from <paramref name="earliest"/> on, else the grid.</summary>
+        private static bool TryCut(V1State state, float beatTime, float beatLn, float earliest, out float cut)
         {
-            return Mathf.Max(0f, loopTime - LoopCutLead) / Mathf.Max(0.01f, pitch);
+            float from = Mathf.Max(earliest, beatTime - CutWindowBefore * beatLn);
+            return LegacyLoopCuts.TryChoose(state.LoopClip, from, beatTime + CutWindowAfter * beatLn, GridCut(beatTime), out cut);
         }
 
-        /// <summary>WeaponSoundPlayer.StopFiringLoop (beat-aligned tail of a loop salve), with
-        /// the loop cut before the next attack (see <see cref="LoopCutLead"/>) and the tail
-        /// stopped before its end (see <see cref="ClipTime"/>).</summary>
+        /// <summary>Clip time of the grid cut on <paramref name="beatTime"/>.</summary>
+        private static float GridCut(float beatTime)
+        {
+            return Mathf.Max(0f, beatTime - LoopCutLead);
+        }
+
+        /// <summary>Real time from the start of a loop to a cut at <paramref name="clipTime"/>.</summary>
+        private static float ToRealTime(float clipTime, float pitch)
+        {
+            return clipTime / Mathf.Max(0.01f, pitch);
+        }
+
+        private static void LogCut(V1State state, string kind, float grid, float cut)
+        {
+            if (PluginConfig.LogShotDetails)
+            {
+                Plugin.Log.LogWarning($"[loop] {kind} clip={state.LoopClip?.name} grid={grid * 1000f:F0}ms cut={cut * 1000f:F0}ms");
+            }
+        }
+
+        /// <summary>WeaponSoundPlayer.StopFiringLoop (tail of a loop salve), with the loop cut in
+        /// the quietest gap of the next beat (<see cref="LegacyLoopCuts"/>, else on the grid before
+        /// the next attack, see <see cref="LoopCutLead"/>) and the tail stopped before its end
+        /// (see <see cref="ClipTime"/>).</summary>
         private static void StopLoopV1(WeaponSoundPlayer __instance)
         {
             var t = Traverse.Create(__instance);
+            var state = S(__instance);
             double startFire = t.Field("_startFire").GetValue<double>();
             float delay = t.Field("_delay").GetValue<float>();
-            float pitch = t.Field("_pitch").GetValue<float>();
+            float pitch = Mathf.Max(0.01f, t.Field("_pitch").GetValue<float>());
             float beatLn = __instance.BeatLn;
             int beats = (int)((AudioSettings.dspTime - startFire) / beatLn) + 1;
-            float cut = LoopCut(beats * beatLn, pitch);
+            // clip time the loop plays now. No margin for the frame the queue takes to apply
+            // the cut: a cut a few ms late stops at the next audio buffer, still in the gap,
+            // while a margin skipped gaps not reached yet (see below).
+            float playing = (float)(AudioSettings.dspTime - startFire - delay) * pitch;
+            float beatTime = beats * beatLn;
+            if (!TryCut(state, beatTime, beatLn, playing, out float clipCut) && clipCut < playing
+                && LegacyLoopCuts.Get(state.LoopClip) != null)
+            {
+                // past this beat's gap and grid cut, the next shot is already playing (the
+                // silenced PDW's gap is 0.58 beat before the line): it is ended at its own gap
+                // rather than cut at once inside it. Counted from the gap actually passed, this
+                // plays a cut more than a beat after the release in 5 % of the releases over the
+                // WTT loops; with a 30 ms margin it was 35 %, often a whole extra shot.
+                beatTime += beatLn;
+                TryCut(state, beatTime, beatLn, playing, out clipCut);
+            }
+            LogCut(state, "release", GridCut(beatTime), clipCut);
+            float cut = ToRealTime(clipCut, pitch);
             double tailStart = startFire + delay + cut;
             t.Field("_startPlayingTime").SetValue(tailStart);
 
@@ -665,7 +733,7 @@ namespace SoundEngineBackport
                 tail.PickClipsByDistance(ref clip, ref clip2, ref balance, (int)Bridge(__instance).Environment, __instance.Distance);
                 t.Field("_balance").SetValue(balance);
                 tailLength = Mathf.Max(clip != null ? clip.length : 0f, clip2 != null ? clip2.length : 0f);
-                t.Field("_queue").GetValue<SuperBetterAudioQueue>()?.Enqueue(clip, clip2, balance, tailStart, ClipTime(tailLength, pitch), tail.BaseVolume, pitch);
+                t.Field("_queue").GetValue<SuperBetterAudioQueue>()?.Enqueue(clip, clip2, balance, tailStart, ClipTime(tailLength, pitch), tail.BaseVolume * LiveMixer.GunshotGain, pitch);
             }
 
             float occlusionRelease = delay + cut;
@@ -688,11 +756,13 @@ namespace SoundEngineBackport
         private static void ScheduleLoopTail(
             WeaponSoundPlayer __instance,
             Traverse t,
+            V1State state,
             bool isSilenced,
             EnvironmentType environment,
             float pitchMult,
             double startFire,
-            float delay)
+            float delay,
+            int beats)
         {
             var queue = t.Field("_queue").GetValue<SuperBetterAudioQueue>();
             if (queue == null)
@@ -716,7 +786,14 @@ namespace SoundEngineBackport
             float balance = 1f;
             tail.PickClipsByDistance(ref clip3, ref clip4, ref balance, (int)environment, __instance.Distance);
             float tailLength = Mathf.Max(clip3 != null ? clip3.length : 0f, clip4 != null ? clip4.length : 0f);
-            float beat = LoopCut(beatLn, pitchMult);
+            // the salve is already over: one bullet, or two for a 2-round burst, whose second
+            // shot plays no sound of its own (SPT plays two beats for it; up to 1.0.1 this
+            // played one, so a 2-round burst sounded like a single shot). The quietest gap
+            // around that beat, the grid cut otherwise.
+            float beatTime = beats * beatLn;
+            TryCut(state, beatTime, beatLn, 0f, out float clipCut);
+            LogCut(state, beats == 2 ? "burst2" : "single", GridCut(beatTime), clipCut);
+            float beat = ToRealTime(clipCut, pitchMult);
 
             double tailStart = startFire + delay + beat;
             queue.Enqueue(clip3, clip4, balance, tailStart, ClipTime(tailLength, pitchMult), tail.BaseVolume * LiveMixer.GunshotGain, pitchMult);

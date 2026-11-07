@@ -139,11 +139,15 @@ Detailed sequence of a shot through the live engine:
 | Prefix of `SpatialAudioDataLoader.LoadBakeDataAsync` | Checks the scene's rooms and portals, then gives the game the live file, or SPT's if the check fails |
 | Postfix of `SpatialAudioDataLoader.DataLoadedHandler` | Logs what the game loaded |
 
-`IsLegacyBank` classifies a bank as old if one of its clips contains `_loop` without containing `tail`. The result is cached per bank, because reading clip names on every bullet would be costly.
+`IsLegacyBank` classifies a bank as old if one of its clips contains `loop` (any case, some WTT-Armory clips have no underscore) without containing `tail`. The result is cached per bank, because reading clip names on every bullet would be costly.
 
 ### V1 engine
 
-This engine serves banks that remain in loop format, for example on some WTT-Armory weapons. It keeps SPT's loop behavior, with a queue and a scheduled tail. It can also play a bank of isolated clips if the live engine is disabled.
+This engine serves banks that remain in loop format, for example on some WTT-Armory weapons. It keeps SPT's loop behavior, with a queue and a scheduled tail. One difference: SPT ends a salve only when the trigger is released, even in semi, so a 100 ms click played two beats of the loop for one bullet. Outside `fullauto` and `burst`, the V1 engine schedules the tail one beat after the shot, as SPT does for a trigger already released.
+
+The loop is not cut on SPT's grid (`ClipLength / 16`) either. Many custom loops do not follow it: the KAC PDW loop holds 17.3 shots, and its silenced loop starts each shot about 18 ms before its grid line. The grid cut then lands inside a shot, up to full scale, while the tail starts around 0.2, and the queue does no crossfade. `LegacyLoopCuts` reads each loop clip once (`AudioClip.GetData`) and lists its gaps: the lowest point of a 3 ms envelope over ±25 ms, below 70 % of its peak. The cut ending the shot of a beat goes to the quietest gap from 0.65 beat before its grid line to 0.2 beat after it, not yet played. A single shot ends on the first beat (0.35 to 1.2 beats), a 2-round burst on the second, as in SPT (its second shot plays no sound of its own; up to 1.0.1 the V1 engine ended it on the first beat, so it sounded like a single shot). A salve ends on the beat SPT picks (the next grid line after the release); if that beat's gap and grid cut are both already past, the next shot is already playing and ends at its own gap rather than being cut at once (5 % of releases end more than a beat after the release this way). The grid cut, 15 ms before the beat, stays when no gap is found, when it is quieter, or when the clip can't be read. Gap times count in blocks of `frequency / 1000` frames (0.998 ms at 44.1 kHz), and the level a cut leaves is the peak of the millisecond before it. Over the 338 loop clips a V1 salve can play (WTT-Armory, the live RPD, M60 and silenced AA-12 loops, WTT-ContentBackport's), measured on the real samples, the peak left at the cut drops from 0.31 to 0.21 on single shots, from 0.33 to 0.22 on 2-round bursts and from 0.44 to 0.31 on salve ends. No loop gets worse, except 5 bursts by 0.02 to 0.04. `DebugLogs` writes each cut as a `[loop]` line.
+
+The V1 engine can also play a bank of isolated clips if the live engine is disabled.
 
 ### Per-weapon engine (`LiveWeaponSoundEngine`)
 
