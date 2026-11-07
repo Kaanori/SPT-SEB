@@ -4,7 +4,7 @@
 
 **Sound Engine Backport: the EFT 1.0 sound engine, ported to SPT.**
 
-![Version](https://img.shields.io/badge/version-1.0.1-c8a951)
+![Version](https://img.shields.io/badge/version-1.0.2-c8a951)
 ![SPT](https://img.shields.io/badge/SPT-4.1.x-4b8bbe)
 ![EFT reference](https://img.shields.io/badge/EFT%20live-1.3.0.48484-555)
 ![BepInEx](https://img.shields.io/badge/BepInEx-5-blueviolet)

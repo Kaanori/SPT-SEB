@@ -411,7 +411,7 @@ SPT's occlusion computation, the Meta XR acoustic maps and geometry, supersonic 
 
 ## 9. Configuration
 
-File: `BepInEx/config/red.soundenginebackport.cfg` (`red.soundenginebackport.client.cfg` up to 1.0.1, moved on first start). Settings are also available from the Configuration Manager (F12).
+File: `BepInEx/config/red.soundenginebackport.cfg` (`red.soundenginebackport.client.cfg` up to 1.0.0, moved on first start). Settings are also available from the Configuration Manager (F12).
 
 Only the `Volume` section is visible by default. Everything else is marked `IsAdvanced` and only appears with "Advanced settings" ticked.
 
