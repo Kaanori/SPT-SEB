@@ -1,6 +1,7 @@
 // Audio data of the live game that SPT does not have: the master mixer, the sound group
 // presets, the casing sound limits and the per-weapon AudioSettings of the item templates.
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using EFT;
@@ -26,6 +27,7 @@ namespace SoundEngineBackport.LiveEngine
         private const string HideoutVolume = "HideoutVolume";
         private const string HideoutLowPass = "HideoutLowPass";
         private const string InGameVolume = "InGame";
+        private const string MusicVolume = "MusicVolume";
         private const float MutedDb = -80f;
         private const float HideoutFadeSeconds = 1f;
         private const float HideoutLowPassOpenHz = 22000f;
@@ -227,6 +229,39 @@ namespace SoundEngineBackport.LiveEngine
             int hideoutVolume = Comfort.Common.Singleton<EFT.Settings.SettingsManager>.Instance.Sound.Settings.HideoutVolumeValue;
             audio.FadeMixerVolume(InGameVolume, active ? 0f : MutedDb, HideoutFadeSeconds);
             audio.FadeMixerVolume(HideoutVolume, active ? hideoutVolume : MutedDb, HideoutFadeSeconds);
+        }
+
+        /// <summary>BetterAudio.ToggleNarrate (trader visits) fades InGame and MusicVolume on
+        /// BetterAudio.Master, which was SPT's mixer. The live mixer plays through SPT's InGame group
+        /// and the menu music through SPT's Music group, so both fades must reach SPT's mixer too.
+        /// Without this, SPT's InGame stays at the -80 dB the main menu set
+        /// (MenuScreen.MainMenuBaseScreenController.ShowAction -> GUISounds.method_11(false)) and the
+        /// whole visit, voices included, is silent. Raids are not affected only because
+        /// LocalGame calls AudioSettings.Reset (AudioUtils.ResetAudioBuffer) before the raid.</summary>
+        public static void MirrorNarrate(BetterAudio betterAudio, bool inScene, float seconds)
+        {
+            AudioMixer game = EFT.Settings.Sound.SoundSettingsController.MasterMixer;
+            if (!Active || betterAudio == null || game == null || game == betterAudio.Master || Plugin.Instance == null)
+            {
+                return;
+            }
+            int music = Comfort.Common.Singleton<EFT.Settings.SettingsManager>.Instance.Sound.Settings.MusicVolumeValue;
+            Plugin.Instance.StartCoroutine(FadeGameMixer(game, InGameVolume, inScene ? 0f : MutedDb, seconds));
+            Plugin.Instance.StartCoroutine(FadeGameMixer(game, MusicVolume, inScene ? MutedDb : music, seconds));
+        }
+
+        private static IEnumerator FadeGameMixer(AudioMixer mixer, string parameter, float endDb, float seconds)
+        {
+            if (!mixer.GetFloat(parameter, out float startDb))
+            {
+                yield break;
+            }
+            for (float t = 0f; t < seconds; t += Time.unscaledDeltaTime)
+            {
+                mixer.SetFloat(parameter, Mathf.Lerp(startDb, endDb, t / seconds));
+                yield return null;
+            }
+            mixer.SetFloat(parameter, endDb);
         }
 
         public static void MirrorHideoutLowPass(bool active, float seconds)

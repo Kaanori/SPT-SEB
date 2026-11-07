@@ -22,12 +22,15 @@ namespace SoundEngineBackport
 
         internal static ManualLogSource Log;
         internal static string Location;
+        // runs the SPT mixer fades of trader visits: BetterAudio is destroyed when a visit ends
+        internal static Plugin Instance;
         internal static new PluginConfig Config;
 
         private void Awake()
         {
             Log = Logger;
             Location = Info.Location;
+            Instance = this;
             MigrateOldConfig();
             Config = new PluginConfig(((BaseUnityPlugin)this).Config);
             Config.BindAndApply();
@@ -918,6 +921,14 @@ namespace SoundEngineBackport
         public static void FindMixerGroupPrefix(ref string groupName)
         {
             groupName = LiveMixer.MapGroupName(groupName);
+        }
+
+        // trader visits: the narrate fades must also reach SPT's mixer, the live one plays into it
+        [HarmonyPatch(typeof(BetterAudio), "ToggleNarrate")]
+        [HarmonyPostfix]
+        public static void ToggleNarratePostfix(BetterAudio __instance, bool inScene, float seconds)
+        {
+            LiveMixer.MirrorNarrate(__instance, inScene, seconds);
         }
 
         [HarmonyPatch(typeof(BetterAudio), "ResetWorldMixerValues")]
